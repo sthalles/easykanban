@@ -1,5 +1,5 @@
 angular.module('easykanban')
-    .controller('BoardController', BoardController);
+  .controller('BoardController', BoardController);
 
 
 function BoardController($scope, $mdDialog, BoardConfigService, TaskService) {
@@ -7,7 +7,7 @@ function BoardController($scope, $mdDialog, BoardConfigService, TaskService) {
   self.boardColumns = BoardConfigService.getBoardColumns();
   self.tasks = TaskService.getAllTasks();
 
-  self.selectColumn = function(column, $event) {
+  self.selectColumn = function (column, $event) {
     console.log($event.currentTarget);
     for (var i = 0; i < self.boardColumns.length; i++) {
       if (self.boardColumns[i].isSelected == true) {
@@ -18,7 +18,7 @@ function BoardController($scope, $mdDialog, BoardConfigService, TaskService) {
     column.isSelected = true;
   };
 
-  $scope.handleDragStart = function(ev) {
+  $scope.handleDragStart = function (ev) {
     //debugger;
     this.style.opacity = '0.4';
     ev.dataTransfer.setData('text/plain', ev.target.id);
@@ -26,11 +26,11 @@ function BoardController($scope, $mdDialog, BoardConfigService, TaskService) {
     ev.dataTransfer.dropEffect = 'move';
   };
 
-  $scope.handleDragEnd = function(ev) {
+  $scope.handleDragEnd = function (ev) {
     this.style.opacity = '1.0';
   };
 
-  $scope.handleDrop = function(ev) {
+  $scope.handleDrop = function (ev) {
     ev.preventDefault();
     ev.stopPropagation();
 
@@ -42,25 +42,36 @@ function BoardController($scope, $mdDialog, BoardConfigService, TaskService) {
     }
   };
 
-  $scope.handleDragOver = function(ev) {
+  $scope.handleDragOver = function (ev) {
     ev.preventDefault(); // Necessary. Allows us to drop.
     ev.dataTransfer.dropEffect = 'move'; // See the section on the DataTransfer object.
     return false;
   };
 
-  this.showTabDialog = function(ev) {
+  this.showTabDialog = function (ev) {
+
     $mdDialog.show({
-      controller: BoardController,
-      templateUrl: '../partials/addTaskDialog.html',
-      parent: angular.element(document.body),
-      targetEvent: ev,
-      clickOutsideToClose: true
-    })
-        .then(function(answer) {
-          this.status = 'You said the information was "' + answer + '".';
-        }, function() {
-          this.status = 'You cancelled the dialog.';
-        });
+        controller: TaskDialogController,
+        controllerAs: 'TaskDialogCtrl',
+        templateUrl: '../partials/addTaskDialog.html',
+        parent: angular.element(document.body),
+        targetEvent: ev,
+        clickOutsideToClose: true
+      })
+      .then(function (answer) {
+        this.status = 'You said the information was "' + answer + '".';
+      }, function () {
+        this.status = 'You cancelled the dialog.';
+      });
+
+    function TaskDialogController() {
+      var vm = this;
+
+      vm.createNewTask = function (task) {
+
+      }
+    }
+
   };
 
 }
