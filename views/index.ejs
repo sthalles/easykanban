@@ -5,8 +5,16 @@
   <title>
     <%= title %>
   </title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
   <link rel='stylesheet' href='/stylesheets/style.css' />
+  <link rel='stylesheet' href='/stylesheets/board.css' />
+  <link rel='stylesheet' href='/stylesheets/animations/board-cols-anim.css' />
   <link rel='stylesheet' href='/javascripts/bower_components/angular-material/angular-material.css' />
+
+  <!--Let browser know website is optimized for mobile-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 </head>
 
 <body ng-app="easykanban" layout="column">
@@ -14,14 +22,41 @@
     <h2> EasyKanban </h2>
   </md-toolbar>
 
-  <div class="container" layout="row" flex>
+  <div class="container" layout="row" flex ng-controller="BoardController as boardCtrl">
 
-    <md-sidenav md-is-locked-open="true" class="lightblue">
+    <md-sidenav md-is-locked-open="false" class="lightblue">
       Sidebar
     </md-sidenav>
 
-    <md-content class="lightgreen" flex>
-      Lorem ipsum dolor sit amet, ne quod novum mei.
+    <md-content class="lightgreen" class="md-whiteframe-4dp" flex layout="row">
+      <div layout="row" layout-fill>
+
+        <div flex layout="column" ng-repeat='col in boardCtrl.boardColumns' ng-class="{'selected-column': col.isSelected}">
+          <md-button class="md-no-focus remove-padding-margin" ng-click="boardCtrl.selectColumn(col, $event)">{{col.title}}</md-button>
+          <div class="column-content" style="background-color: {{col.color}}" id="col{{$index}}" droppable="true" layout="row" layout-align="start start" layout-wrap flex>
+
+            <md-card id="task{{$index}}" ng-if="task.column == col.id" draggable="true" md-theme="dark-orange" class="task-card" md-theme-watch ng-repeat="task in boardCtrl.tasks">
+              <md-card-title>
+                <md-card-title-text>
+                  <span class="md-headline">Task ID #{{task.id}}</span>
+                  <span class="md-subhead">{{task.description}}</span>
+                </md-card-title-text>
+                <md-card-title-media>
+                  <div class="md-media-sm card-media"></div>
+                </md-card-title-media>
+              </md-card-title>
+              <md-card-actions layout="row" layout-align="end center">
+                <md-button>Action 1</md-button>
+                <md-button>Action 2</md-button>
+              </md-card-actions>
+            </md-card>
+
+          </div>
+        </div>
+        <md-button class="md-fab md-fab-bottom-right" aria-label="Add Task" ng-click="boardCtrl.showTabDialog($event)">
+          <md-icon> add </md-icon>
+        </md-button>
+      </div>
     </md-content>
   </div>
 
@@ -30,6 +65,14 @@
   <script src="/javascripts/bower_components/angular-aria/angular-aria.js"></script>
   <script src="/javascripts/bower_components/angular-material/angular-material.js"></script>
   <script src="/javascripts/app.js"></script>
+
+  <script src="/javascripts/services/task.js"></script>
+  <script src="/javascripts/services/board.js"></script>
+
+  <script src="/javascripts/directivies/dragdrop.js"></script>
+
+  <script src="/javascripts/controllers/board.js"></script>
+
 
 </body>
 

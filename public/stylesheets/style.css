@@ -14,3 +14,16 @@ a {
 .lightgreen {
   background-color: lightgreen;
 }
+
+.remove-padding {
+  padding: 0px important;
+}
+
+.remove-margin {
+  margin: 0px important;
+}
+
+.remove-padding-margin {
+  padding: 0px !important;
+  margin: 0px !important;
+}

@@ -1,0 +1,8 @@
+.task-card {
+  height: 145px;
+  min-width: 240px;
+}
+
+.column-content {
+  overflow-y: auto;
+}
