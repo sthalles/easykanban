@@ -1,7 +1,22 @@
-<md-dialog aria-label="Add Task" layout="column" ng-cloak>
-  <md-content layout-padding>
-    <form name="addTaskForm" ng-submit="addTaskForm.$valid && TaskDialogCtrl.createNewTask(task)">
+<md-dialog aria-label="Add Task" layout="column" flex-xs="90" flex-sm="70" flex-gt-sm="50">
+  <md-toolbar>
+    <div class="md-toolbar-tools">
+      <h2>      
+        <md-icon>assignment</md-icon>
+        Add new Task
+      </h2>
+      <span flex></span>
+      <md-button class="md-icon-button" ng-click="TaskDialogCtrl.cancel()">
+        <md-icon aria-label="Close dialog">close</md-icon>
+      </md-button>
+    </div>
+  </md-toolbar>
+  <md-dialog-content layout-padding>
 
+
+
+
+    <form name="addTaskForm" ng-submit="addTaskForm.$valid && TaskDialogCtrl.createNewTask(task)">
       <div layout="row">
         <md-input-container flex="50">
           <label>Task Name</label>
@@ -42,16 +57,17 @@
 
         <md-input-container flex="50">
           <label>Status</label>
-          <md-select name="status" ng-model="task.status" required>
+          <md-select name="status" ng-model="task.column" required>
             <md-option value="1">TODO</md-option>
             <md-option value="2">DOING</md-option>
             <md-option value="3">DONE</md-option>
           </md-select>
         </md-input-container>
       </div>
-      <div>
+      <md-dialog-actions>
         <md-button type="submit">Add</md-button>
-      </div>
+      </md-dialog-actions>
+
     </form>
-  </md-content>
+  </md-dialog-content>
 </md-dialog>

@@ -51,27 +51,35 @@ function BoardController($scope, $mdDialog, BoardConfigService, TaskService) {
   this.showTabDialog = function (ev) {
 
     $mdDialog.show({
-        controller: TaskDialogController,
-        controllerAs: 'TaskDialogCtrl',
-        templateUrl: '../partials/addTaskDialog.html',
-        parent: angular.element(document.body),
-        targetEvent: ev,
-        clickOutsideToClose: true
-      })
-      .then(function (answer) {
-        this.status = 'You said the information was "' + answer + '".';
-      }, function () {
-        this.status = 'You cancelled the dialog.';
-      });
+      controller: TaskDialogController,
+      controllerAs: 'TaskDialogCtrl',
+      templateUrl: '../partials/addTaskDialog.html',
+      parent: angular.element(document.body),
+      targetEvent: ev,
+      clickOutsideToClose: true
+    });
 
     function TaskDialogController() {
       var vm = this;
 
-      vm.createNewTask = function (task) {
+      vm.createNewTask = function (newTask) {
+        // TODO: send the task to the server
 
-      }
+        self.tasks.push(angular.copy(newTask));
+        vm.hide();
+      };
+
+      vm.hide = function () {
+        $mdDialog.hide();
+      };
+
+      vm.cancel = function () {
+        $mdDialog.cancel();
+      };
+
+      vm.answer = function (answer) {
+        vm.hide();
+      };
     }
-
   };
-
 }
