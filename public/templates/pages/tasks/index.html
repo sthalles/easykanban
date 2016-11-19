@@ -1,0 +1,28 @@
+<md-content layout="row" layout-fill ng-controller="BoardController as boardCtrl">
+
+  <div flex layout="column" ng-repeat='col in boardCtrl.boardColumns' ng-class="{'selected-column': col.isSelected}">
+    <md-button class="md-no-focus remove-padding-margin" ng-click="boardCtrl.selectColumn(col, $event)">{{col.title}}</md-button>
+    <div class="column-content" style="background-color: {{col.color}}" id="col{{$index}}" droppable="true" layout="row" layout-align="start start" layout-wrap flex>
+
+      <md-card id="task{{$index}}" ng-if="task.column == col.id" draggable="true" md-theme="dark-orange" class="task-card" md-theme-watch ng-repeat="task in boardCtrl.tasks">
+        <md-card-title>
+          <md-card-title-text>
+            <span class="md-headline">Task ID #{{task.id}}</span>
+            <span class="md-subhead">{{task.description}}</span>
+          </md-card-title-text>
+          <md-card-title-media>
+            <div class="md-media-sm card-media"></div>
+          </md-card-title-media>
+        </md-card-title>
+        <md-card-actions layout="row" layout-align="end center">
+          <md-button>Action 1</md-button>
+          <md-button>Action 2</md-button>
+        </md-card-actions>
+      </md-card>
+
+    </div>
+  </div>
+  <md-button class="md-fab md-fab-bottom-right" aria-label="Add Task" ng-click="boardCtrl.showTabDialog($event)">
+    <md-icon> add </md-icon>
+  </md-button>
+</md-content>

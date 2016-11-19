@@ -22,57 +22,31 @@
     <h2> EasyKanban </h2>
   </md-toolbar>
 
-  <div class="container" layout="row" flex ng-controller="BoardController as boardCtrl">
+  <div class="container" layout="row" flex>
 
     <md-sidenav md-is-locked-open="false" class="lightblue">
       Sidebar
     </md-sidenav>
 
-    <md-content class="lightgreen" class="md-whiteframe-4dp" flex layout="row">
-      <div layout="row" layout-fill>
+    <div flex ng-view class="lightgreen"> </div>
 
-        <div flex layout="column" ng-repeat='col in boardCtrl.boardColumns' ng-class="{'selected-column': col.isSelected}">
-          <md-button class="md-no-focus remove-padding-margin" ng-click="boardCtrl.selectColumn(col, $event)">{{col.title}}</md-button>
-          <div class="column-content" style="background-color: {{col.color}}" id="col{{$index}}" droppable="true" layout="row" layout-align="start start" layout-wrap flex>
+    <script src="/javascripts/bower_components/angular/angular.js"></script>
+    <script src="/javascripts/bower_components/angular-route/angular-route.js"></script>
+    <script src="/javascripts/bower_components/angular-animate/angular-animate.js"></script>
+    <script src="/javascripts/bower_components/angular-aria/angular-aria.js"></script>
+    <script src="/javascripts/bower_components/angular-messages/angular-messages.js"></script>
+    <script src="/javascripts/bower_components/angular-material/angular-material.js"></script>
 
-            <md-card id="task{{$index}}" ng-if="task.column == col.id" draggable="true" md-theme="dark-orange" class="task-card" md-theme-watch ng-repeat="task in boardCtrl.tasks">
-              <md-card-title>
-                <md-card-title-text>
-                  <span class="md-headline">Task ID #{{task.id}}</span>
-                  <span class="md-subhead">{{task.description}}</span>
-                </md-card-title-text>
-                <md-card-title-media>
-                  <div class="md-media-sm card-media"></div>
-                </md-card-title-media>
-              </md-card-title>
-              <md-card-actions layout="row" layout-align="end center">
-                <md-button>Action 1</md-button>
-                <md-button>Action 2</md-button>
-              </md-card-actions>
-            </md-card>
+    <script src="/javascripts/app.js"></script>
+    <script src="/javascripts/routes.js"></script>
 
-          </div>
-        </div>
-        <md-button class="md-fab md-fab-bottom-right" aria-label="Add Task" ng-click="boardCtrl.showTabDialog($event)">
-          <md-icon> add </md-icon>
-        </md-button>
-      </div>
-    </md-content>
-  </div>
+    <script src="/javascripts/services/task.js"></script>
+    <script src="/javascripts/services/board.js"></script>
 
-  <script src="/javascripts/bower_components/angular/angular.js"></script>
-  <script src="/javascripts/bower_components/angular-animate/angular-animate.js"></script>
-  <script src="/javascripts/bower_components/angular-aria/angular-aria.js"></script>
-  <script src="/javascripts/bower_components/angular-messages/angular-messages.js"></script>
-  <script src="/javascripts/bower_components/angular-material/angular-material.js"></script>
-  <script src="/javascripts/app.js"></script>
+    <script src="/javascripts/directivies/dragdrop.js"></script>
 
-  <script src="/javascripts/services/task.js"></script>
-  <script src="/javascripts/services/board.js"></script>
-
-  <script src="/javascripts/directivies/dragdrop.js"></script>
-
-  <script src="/javascripts/controllers/board.js"></script>
+    <script src="/javascripts/controllers/board.js"></script>
+    <script src="/javascripts/controllers/login.js"></script>
 
 
 </body>
