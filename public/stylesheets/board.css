@@ -1,6 +1,7 @@
 .task-card {
   height: auto;
   min-width: 240px;
+  max-width: 280px;
 }
 
 .col-content {

@@ -6,7 +6,7 @@ function TaskService() {
     {
       id: '1',
       name: 'Tasks 1',
-      description: 'Mockup tasks 1',
+      description: 'Finish the web app top bar',
       tag: 'defect',
       creator: 'Thalles',
       assignedTo: 'Thalles',
@@ -51,7 +51,7 @@ function TaskService() {
     }
   ];
 
-  this.getAllTasks = function() {
+  this.getAllTasks = function () {
     return tasks;
   };
 }
