@@ -12,10 +12,10 @@
 
     <div class="col-content" id="{{col.name}}" droppable="true" layout="row" layout-align="start start" layout-wrap flex>
 
-      <md-card id="{{task.name}}" md-theme="{{task.tag}}-task" ng-if="task.column == col.id" draggable="true" class="task-card" md-theme-watch ng-repeat="task in boardCtrl.tasks">
+      <md-card id="{{key}}" md-theme="{{task.tag}}-task" ng-if="task.column == col.id" draggable="true" class="task-card" md-theme-watch ng-repeat="(key, task) in boardCtrl.tasks">
         <md-card-title>
           <md-card-title-text>
-            <span class="md-headline">Task ID #{{task.id}}</span>
+            <span class="md-headline">Task ID #{{key}}</span>
             <span class="md-subhead">{{task.description}}</span>
           </md-card-title-text>
           <md-card-title-media>

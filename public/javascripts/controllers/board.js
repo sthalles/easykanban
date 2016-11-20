@@ -1,5 +1,5 @@
 angular.module('easykanban')
-    .controller('BoardController', BoardController);
+  .controller('BoardController', BoardController);
 
 
 function BoardController($scope, $mdDialog, $filter, BoardConfigService, TaskService) {
@@ -7,7 +7,7 @@ function BoardController($scope, $mdDialog, $filter, BoardConfigService, TaskSer
   self.boardColumns = BoardConfigService.getBoardColumns();
   self.tasks = TaskService.getAllTasks();
 
-  self.selectColumn = function(column, $event) {
+  self.selectColumn = function (column, $event) {
     // console.log($event.currentTarget);
     for (var i = 0; i < self.boardColumns.length; i++) {
       if (self.boardColumns[i].isSelected == true) {
@@ -18,7 +18,7 @@ function BoardController($scope, $mdDialog, $filter, BoardConfigService, TaskSer
     column.isSelected = true;
   };
 
-  self.hideColumn = function(column, $event) {
+  self.hideColumn = function (column, $event) {
     if (column.hasOwnProperty('isHidden')) {
       column.isHidden = !column.isHidden;
     } else {
@@ -26,7 +26,7 @@ function BoardController($scope, $mdDialog, $filter, BoardConfigService, TaskSer
     }
   };
 
-  $scope.handleDragStart = function(ev) {
+  $scope.handleDragStart = function (ev) {
     //debugger;
     this.style.opacity = '0.4';
     ev.dataTransfer.setData('text/plain', ev.target.id);
@@ -34,11 +34,11 @@ function BoardController($scope, $mdDialog, $filter, BoardConfigService, TaskSer
     ev.dataTransfer.dropEffect = 'move';
   };
 
-  $scope.handleDragEnd = function(ev) {
+  $scope.handleDragEnd = function (ev) {
     this.style.opacity = '1.0';
   };
 
-  $scope.handleDrop = function(ev) {
+  $scope.handleDrop = function (ev) {
     ev.preventDefault();
     ev.stopPropagation();
 
@@ -47,7 +47,6 @@ function BoardController($scope, $mdDialog, $filter, BoardConfigService, TaskSer
 
     if (ev.target.hasAttribute('droppable')) {
       var draggedTask = document.getElementById(draggedTaskId);
-      ev.target.appendChild(draggedTask);
 
       // get the id of the column
       var colId = ev.target.getAttribute('id');
@@ -56,23 +55,20 @@ function BoardController($scope, $mdDialog, $filter, BoardConfigService, TaskSer
         'name': colId
       });
 
-      // update the task's position
-      for (var i = 0; i < self.tasks.length; i++) {
-        if (self.tasks[i].name == draggedTaskId) {
-          self.tasks[i].column = col[0].id;
-          break;
-        }
+      if (self.tasks[draggedTaskId].column != col[0].id) {
+        self.tasks[draggedTaskId].column = col[0].id;
+        ev.target.appendChild(draggedTask);
       }
     }
   };
 
-  $scope.handleDragOver = function(ev) {
+  $scope.handleDragOver = function (ev) {
     ev.preventDefault(); // Necessary. Allows us to drop.
     ev.dataTransfer.dropEffect = 'move'; // See the section on the DataTransfer object.
     return false;
   };
 
-  this.showTabDialog = function(ev) {
+  this.showTabDialog = function (ev) {
 
     $mdDialog.show({
       controller: TaskDialogController,
@@ -86,22 +82,22 @@ function BoardController($scope, $mdDialog, $filter, BoardConfigService, TaskSer
     function TaskDialogController() {
       var vm = this;
 
-      vm.createNewTask = function(newTask) {
+      vm.createNewTask = function (newTask) {
         // TODO: send the task to the server
 
         self.tasks.push(angular.copy(newTask));
         vm.hide();
       };
 
-      vm.hide = function() {
+      vm.hide = function () {
         $mdDialog.hide();
       };
 
-      vm.cancel = function() {
+      vm.cancel = function () {
         $mdDialog.cancel();
       };
 
-      vm.answer = function(answer) {
+      vm.answer = function (answer) {
         vm.hide();
       };
     }
