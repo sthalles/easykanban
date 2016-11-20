@@ -7,8 +7,6 @@
 .col-content {
   overflow-y: auto;
   border: 0;
-  border-right: 1px !important;
-  border-left: 1px !important;
   border-top: 1px !important;
   border-style: solid !important;
   border-color: rgba(0, 0, 0, 0.12) !important;
@@ -24,4 +22,27 @@
 
 .active-col {
   border-color: rgb(255, 82, 82) !important;
+}
+
+.hidden-col {
+  flex-grow: 0.13 !important;
+}
+
+.col-container {
+  border-style: solid;
+  border-color: rgba(0, 0, 0, 0.12) !important;
+  border-width: 0px 1px 0px 0px;
+  -webkit-transition: all 1s !important;
+  /* For Safari 3.1 to 6.0 */
+  transition: all 1s !important;
+}
+
+.visibility-icon-pos {
+  position: absolute;
+  right: 10px;
+  top: 6px;
+}
+
+#col-visibility-btn {
+  min-width: 60px;
 }

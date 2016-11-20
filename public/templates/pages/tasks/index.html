@@ -1,8 +1,18 @@
 <md-content layout="row" layout-fill ng-controller="BoardController as boardCtrl">
 
-  <div flex layout="column" ng-repeat='col in boardCtrl.boardColumns' ng-class="{'selected-column': col.isSelected}">
-    <md-button class="md-no-focus remove-padding-margin board-col-btn" ng-class="{'active-col': col.isSelected}" ng-click="boardCtrl.selectColumn(col, $event)">{{col.title}}</md-button>
-    <div class="col-content col-border" id="col{{$index}}" droppable="true" layout="row" layout-align="start start" layout-wrap flex>
+  <div flex layout="column" ng-repeat='col in boardCtrl.boardColumns' class="col-container" ng-class="{'selected-column': col.isSelected, 'hidden-col': col.isHidden}">
+    <div layout="row">
+      <md-button flex class="md-no-focus remove-padding-margin board-col-btn" ng-class="{'active-col': col.isSelected}" ng-click="boardCtrl.selectColumn(col, $event)">{{col.title}}
+      </md-button>
+
+
+      <md-button id="col-visibility-btn" class="md-icon-button md-primary remove-padding-margin" aria-label="Hide Column" ng-click="boardCtrl.hideColumn(col, $event)">
+        <md-icon>visibility</md-icon>
+      </md-button>
+
+    </div>
+
+    <div class="col-content" id="col{{$index}}" droppable="true" layout="row" layout-align="start start" layout-wrap flex>
 
       <md-card id="task{{$index}}" md-theme="{{task.tag}}-task" ng-if="task.column == col.id" draggable="true" class="task-card" md-theme-watch ng-repeat="task in boardCtrl.tasks">
         <md-card-title>

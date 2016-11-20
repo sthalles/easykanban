@@ -51,7 +51,7 @@ function TaskService() {
     }
   ];
 
-  this.getAllTasks = function () {
+  this.getAllTasks = function() {
     return tasks;
   };
 }

@@ -2,9 +2,6 @@
   -webkit-box-flex: 4.5 !important;
   -ms-flex-positive: 4.5 !important;
   flex: 4.5 !important;
-  -webkit-transition: all 1s;
-  /* For Safari 3.1 to 6.0 */
-  transition: all 1s;
 }
 
 @media (min-width: 600px) {
@@ -12,9 +9,6 @@
     -webkit-box-flex: 2.0 !important;
     -ms-flex-positive: 2.0 !important;
     flex-grow: 2.0 !important;
-    -webkit-transition: all 1s;
-    /* For Safari 3.1 to 6.0 */
-    transition: all 1s;
   }
 }
 
@@ -23,8 +17,5 @@
     -webkit-box-flex: 1.8 !important;
     -ms-flex-positive: 1.8 !important;
     flex-grow: 1.8 !important;
-    -webkit-transition: all 1s;
-    /* For Safari 3.1 to 6.0 */
-    transition: all 1s;
   }
 }
