@@ -1,6 +1,6 @@
 <md-content class="md-padding" layout="row" layout-align="center center" layout-fill ng-controller="LoginController as loginCtrl" ng-cloak>
 
-  <md-card md-theme-watch flex style="max-width: 580px;">
+  <md-card md-theme="dark-red" flex style="max-width: 480px;" layout-padding>
     <md-card-header>
       <md-card-avatar>
         <img src="img/logo.svg" />
@@ -18,23 +18,22 @@
     </md-card-title>
 
     <form name="userLoginForm">
-      <md-card-content>
-        <md-input-container class="md-block">
-          <!-- Use floating placeholder instead of label -->
-          <md-icon class="email">email</md-icon>
-          <input ng-model="user.email" type="email" placeholder="Email (required)" ng-required="true">
-        </md-input-container>
 
-        <md-input-container class="md-icon-float md-block">
-          <!-- Use floating label instead of placeholder -->
-          <md-icon class="email">lock</md-icon>
-          <input ng-model="user.password" type="password" placeholder="Password (required)" ng-required="true">
-        </md-input-container>
+      <md-input-container class="md-block">
+        <!-- Use floating placeholder instead of label -->
+        <md-icon class="email">email</md-icon>
+        <input ng-model="user.email" type="email" placeholder="Email (required)" ng-required="true">
+      </md-input-container>
 
-      </md-card-content>
-      <md-card-actions layout="row" layout-align="end center">
+      <md-input-container class="md-icon-float md-block">
+        <!-- Use floating label instead of placeholder -->
+        <md-icon class="email">lock</md-icon>
+        <input ng-model="user.password" type="password" placeholder="Password (required)" ng-required="true">
+      </md-input-container>
+
+      <md-card-actions layout="column" layout-align="end center">
+        <md-button layout-fill class="md-raised md-primary">Go in</md-button>
         <md-button>Register</md-button>
-        <md-button>Go into</md-button>
       </md-card-actions>
     </form>
   </md-card>

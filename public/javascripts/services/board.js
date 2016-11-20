@@ -1,12 +1,12 @@
 angular.module('easykanban')
-    .service('BoardConfigService', BoardConfigService);
+  .service('BoardConfigService', BoardConfigService);
 
 
 function BoardConfigService() {
   var board = [
     {
       id: 1,
-      title: 'To do',
+      title: 'Todo',
       isSelected: true,
       color: 'red'
     }, {
@@ -20,7 +20,7 @@ function BoardConfigService() {
       isSelected: false,
       color: 'yellow'
     }];
-  this.getBoardColumns = function() {
+  this.getBoardColumns = function () {
     return board;
   };
 }

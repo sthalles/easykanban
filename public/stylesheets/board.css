@@ -1,8 +1,26 @@
 .task-card {
-  height: 145px;
+  height: auto;
   min-width: 240px;
 }
 
-.column-content {
+.col-content {
   overflow-y: auto;
+  border: 0;
+  border-right: 1px !important;
+  border-left: 1px !important;
+  border-top: 1px !important;
+  border-style: solid !important;
+  border-color: rgba(0, 0, 0, 0.12) !important;
+}
+
+.board-col-btn {
+  border-radius: 0px !important;
+  border-bottom: 2px !important;
+  border-style: solid !important;
+  border-color: transparent !important;
+  color: rgba(0, 0, 0, 0.54) !important;
+}
+
+.active-col {
+  border-color: rgb(255, 82, 82) !important;
 }
