@@ -1,0 +1,13 @@
+1- The user shall be able to register/create tasks with an unique id, a name, a value that describes how difficul it is, a short description, a tag to describe the kind of task, and its date of creation. 
+
+2- The user can create histories that must have a name, a description, and a rough estimate in ponts.
+
+3- The user shall be able to associate tasks with histories 
+
+4- The kanban board has to have at leats 3 columns - TODO, DOING, and DONE
+
+5- The user may have the ability to customize the board adding and/or removing columns - however, the three columns described at (4) shall not be removed
+
+6- The user shall be able to move the tasks that belong to him thorough the board's columns in order to change their status
+
+7- Each column of the board indicates how many tasks there are on that column, as well as a limit on the number of tasks that might be there
